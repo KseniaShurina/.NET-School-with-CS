@@ -126,6 +126,7 @@ foreach (var author in paperLibrary.Catalog.GetNumberOfBooksByAuthor())
 //Providers
 IDataProvider xmlDataProvider = new XmlDataProvider();
 IDataProvider jsonDataProvider = new JsonDataProvider();
+IDataProvider scvDataProvider = new ScvDataProvider();
 
 //XML
 await xmlDataProvider.SaveBooks(paperLibrary.Catalog.GetAllBooks());
@@ -141,6 +142,13 @@ await jsonDataProvider.SaveBooks(paperLibrary.Catalog.GetAllBooks());
 Console.WriteLine();
 Console.WriteLine("Books from JSON:");
 foreach (var book in await jsonDataProvider.GetBooks())
+{
+    Console.WriteLine(book);
+}
+
+//SCV
+var books = await scvDataProvider.GetBooks();
+foreach (var book in books)
 {
     Console.WriteLine(book);
 }

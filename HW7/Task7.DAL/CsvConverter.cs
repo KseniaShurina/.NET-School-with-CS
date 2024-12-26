@@ -1,46 +1,61 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using Task7.DAL.Entities;
 
 namespace Task7.DAL;
 
 internal static class CsvConverter
 {
-    public static List<string> ConvertCsvRow(string row)
+    public static List<Author>? CreateAuthor(string stringWithAuthorData)
     {
-        var result = new List<string>();
-        bool isInsideQuotes = false;
-        var currentField = new StringBuilder();
-
-        foreach (var ch in row)
+        if (string.IsNullOrEmpty(stringWithAuthorData))
         {
-            if (ch == '"' && !isInsideQuotes) //Enter to quotes
-            {
-                isInsideQuotes = true;
-                continue;
-            }
-            else if (ch == '"' && isInsideQuotes) //Exit from quotes
-            {
+            return null;
+        }
 
-                isInsideQuotes = false;
-                continue;
-            }
-            else if (ch == ',' && !isInsideQuotes) //Between data
+        List<string> authorList = new List<string>();
+        List<Author> authors = new List<Author>();
+        if (stringWithAuthorData.Contains(','))
+        {
+            var revertedName = stringWithAuthorData.Split(',');
+            foreach (var v in revertedName)
             {
-                result.Add(currentField.ToString().Trim());
-                currentField.Clear();
+                if (!Regex.IsMatch(v, @"\d"))
+                {
+                    authorList.Add(v);
+                }
             }
-            else
+
+            string? firstName = null;
+            string? lastName = null;
+            for (int i = 0; i <= authorList.Count - 1; i++)
             {
-                currentField.Append(ch); // Add symbol
+                if (i % 2 != 0)
+                {
+                    firstName = authorList[i].Trim();
+                }
+                else
+                {
+                    lastName = authorList[i].Trim();
+                }
+                if (firstName != null && lastName != null)
+                {
+                    authors.Add(new Author(firstName, lastName, null));
+                    firstName = null;
+                    lastName = null;
+                }
+            }
+        }
+        else
+        {
+            var revertedName = stringWithAuthorData.Split(' ');
+
+            if (revertedName.Length == 2)
+            {
+                authors.Add(new Author(revertedName[0].Trim(), revertedName[1].Trim(), null));
             }
         }
 
-        if (currentField.Length > 0)
-        {
-            result.Add(currentField.ToString().Trim());
-        }
-
-        return result;
+        return authors;
     }
 
     public static List<string> ConvertToListOfFormats(string line)
@@ -54,11 +69,35 @@ internal static class CsvConverter
     {
         if (line.Contains("isbn"))
         {
-           var isbn = Regex.Replace(line, @"\D+", "");
-           return isbn;
+            var isbn = Regex.Replace(line, @"\D+", "");
+            return isbn;
         }
 
         return line;
+    }
+    // New York : Bradbury Press ; Toronto : Maxwell Macmillan Canada ; New York : Maxwell Macmillan International
+    // New York : Knopf : Distributed by Random House
+    public static List<string> ConvertToListOfPublishers(string line)
+    {
+        return line.Split(';')
+            .Where(publisher => !string.IsNullOrEmpty(publisher))
+            .Select(publisher => publisher.Trim()).ToList();
+    }
+
+    public static List<string>? ConvertToListOfIdentifiers(string line)
+    {
+        if (line.Contains("isbn"))
+        {
+            // \D - Means only numbers
+            return line.Split(',').Select(isbn => Regex.Replace(isbn, @"\D", "")).ToList();
+        }
+
+        return null;
+    }
+
+    public static string? ConvertToTitle(string line)
+    {
+        return Regex.IsMatch(line, @"[a-z]") ? line.Trim() : null;
     }
 }
 
