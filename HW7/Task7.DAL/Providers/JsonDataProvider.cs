@@ -2,9 +2,10 @@
 using Task7.DAL.DtoExtensions;
 using Task7.DAL.Entities;
 using Task7.DAL.Interfaces;
+using Task7.DAL.Repositories;
 using Task7.DAL.Validators;
 
-namespace Task7.DAL.Repositories;
+namespace Task7.DAL.Providers;
 
 public class JsonDataProvider : IDataProvider
 {

@@ -1,6 +1,6 @@
 ﻿using Task7.BL.Interfaces;
 using Task7.DAL.Entities;
-using Task7.DAL.Repositories;
+using Task7.DAL.Providers;
 
 namespace Task7.BL.Factories;
 

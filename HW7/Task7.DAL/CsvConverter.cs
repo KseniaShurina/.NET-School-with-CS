@@ -1,11 +1,54 @@
 ﻿using System.Text.RegularExpressions;
 using Task7.DAL.Entities;
+using Task7.DAL.Validators;
 
 namespace Task7.DAL;
 
 internal static class CsvConverter
 {
-    public static List<Author>? CreateAuthor(string stringWithAuthorData)
+    private const string Path =
+        @"D:\Xeni\Repositories\Coherent-solutions-.NET-School\HW7\Files\notAllowedTitles.txt";
+
+    private const string RegexPattern = @"^[A-Za-z0-9=\- ()':]+(\?[ ]*)?$";
+
+    private const string NotAllowed = "(?i).*isbn.*";
+    //private const string RegexPattern = @"^[A-Za-z0-9=\- ()']+(\?[ ]*)?$";
+
+    //TODO: Bad approach. Allocates memory each time when line is modified.
+    public static string? ConvertToTitle(string line)
+    {
+        if (string.IsNullOrEmpty(line))
+        {
+            return null;
+        }
+
+        line.Trim();
+
+        if (line.Contains(";"))
+        {
+            // Remove text after semicolon and white spaces and Normalize
+            line = Regex.Replace(line, @";.*", "");
+        }
+
+        if (line.Contains(":") && !line.Contains("isbn"))
+        {
+            // Remove white spaces before colon
+            line = Regex.Replace(line, @"\s+:", ":");
+        }
+
+        if (!Regex.IsMatch(line, RegexPattern) || Regex.IsMatch(line, NotAllowed))
+        {
+            using (StreamWriter writer = new StreamWriter(Path, true))
+            {
+                writer.WriteLine(line);
+            }
+            return null;
+        }
+
+        return line;
+    }
+
+    public static List<Author>? ConvertToAuthor(string stringWithAuthorData)
     {
         if (string.IsNullOrEmpty(stringWithAuthorData))
         {
@@ -37,7 +80,7 @@ internal static class CsvConverter
                 {
                     lastName = authorList[i].Trim();
                 }
-                if (firstName != null && lastName != null)
+                if (firstName != null && lastName != null && !Regex.IsMatch(firstName, RegexPattern) && !Regex.IsMatch(lastName, RegexPattern))
                 {
                     authors.Add(new Author(firstName, lastName, null));
                     firstName = null;
@@ -65,39 +108,54 @@ internal static class CsvConverter
         return result;
     }
 
-    public static string ConvertIdentifier(string line)
+    public static List<string>? ConvertToListOfPublishers(string line)
+    {
+        if (string.IsNullOrEmpty(line))
+        {
+            return null;
+        }
+
+        return line.Split(';')
+            .Where(publisher => !string.IsNullOrEmpty(publisher))
+            .Select(publisher => Regex.Replace(line, @"\s+:", ":").Trim()).ToList();
+    }
+
+    public static string? ConvertIdentifier(string line)
     {
         if (line.Contains("isbn"))
         {
             var isbn = Regex.Replace(line, @"\D+", "");
-            return isbn;
+
+            return EntityValidator.IsIsbn(isbn) ? isbn : null;
         }
 
         return line;
     }
-    // New York : Bradbury Press ; Toronto : Maxwell Macmillan Canada ; New York : Maxwell Macmillan International
-    // New York : Knopf : Distributed by Random House
-    public static List<string> ConvertToListOfPublishers(string line)
-    {
-        return line.Split(';')
-            .Where(publisher => !string.IsNullOrEmpty(publisher))
-            .Select(publisher => publisher.Trim()).ToList();
-    }
 
     public static List<string>? ConvertToListOfIdentifiers(string line)
     {
+        if (string.IsNullOrEmpty(line))
+        {
+            return null;
+        }
+
         if (line.Contains("isbn"))
         {
             // \D - Means only numbers
-            return line.Split(',').Select(isbn => Regex.Replace(isbn, @"\D", "")).ToList();
+            var list = line.Split(',').Select(isbn => Regex.Replace(isbn, @"\D", "")).ToList();
+
+            for (int i = 0; i <= list.Count - 1; i++)
+            {
+                if (!EntityValidator.IsIsbn(list[i]))
+                {
+                    list.RemoveAt(i);
+                }
+            }
+
+            return list.Count == 0 ? null : list;
         }
 
         return null;
-    }
-
-    public static string? ConvertToTitle(string line)
-    {
-        return Regex.IsMatch(line, @"[a-z]") ? line.Trim() : null;
     }
 }
 

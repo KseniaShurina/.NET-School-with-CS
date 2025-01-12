@@ -20,7 +20,7 @@ public class Author
         DateOfBirthday = dateOfBirthday;
     }
 
-    public override string ToString() => $"{FirstName} {LastName} {DateOfBirthday?.ToShortDateString() ?? null})";
+    public override string ToString() => $"{FirstName} {LastName} {DateOfBirthday?.ToShortDateString() ?? null}";
 
     public override bool Equals(object? obj)
     {

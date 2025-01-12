@@ -3,15 +3,15 @@ using CsvHelper;
 using Task7.DAL.DTO;
 using Task7.DAL.Entities;
 using Task7.DAL.Interfaces;
+using Task7.DAL.Repositories;
 using Task7.DAL.Validators;
 
-namespace Task7.DAL.Repositories;
+namespace Task7.DAL.Providers;
 
 public class ScvDataProvider : IDataProvider
 {
     public ScvDataProvider() { }
 
-    private readonly IRepository<string> _scvRepository = new ScvRepository<string>();
     private const string PathToFile =
         @"D:\Xeni\Repositories\Coherent-solutions-.NET-School\HW7\Files\books_info.csv";
 
@@ -46,33 +46,33 @@ public class ScvDataProvider : IDataProvider
         throw new NotImplementedException();
     }
 
-    
 
-    public PaperBook CreatePaperBook(CsvBook csvBook)
+
+    public PaperBook? CreatePaperBook(CsvBook csvBook)
     {
         var title = CsvConverter.ConvertToTitle(csvBook.Title);
-        var authors = CsvConverter.CreateAuthor(csvBook.Creator);
+        var authors = CsvConverter.ConvertToAuthor(csvBook.Creator);
         var isbns = CsvConverter.ConvertToListOfIdentifiers(csvBook.RelatedExternalId);
         var publicationDate = DateTime.Parse(csvBook.PublicationDate);
-        // Could be many publishers
-        var publishers = CsvConverter.ConvertToListOfPublishers(csvBook.Publisher);
+        //TODO: Could be many publishers
+        var publisher = CsvConverter.ConvertToListOfPublishers(csvBook.Publisher)[0] ?? null;
 
         // Only for electronic books?
         //var identifier = CsvConverter.ConvertIdentifier(csvBook.Identifier);
-        if (string.IsNullOrEmpty(title) || authors == null || isbns == null)
+        if (string.IsNullOrEmpty(title) || authors == null || isbns == null || publisher == null)
         {
             return null;
         }
-        return new PaperBook(title, authors, isbns, publicationDate, csvBook.Publisher);
+        return new PaperBook(title, authors, isbns, publicationDate, publisher);
     }
 
-    public EBook CreateEBook(CsvBook csvBook)
+    public EBook? CreateEBook(CsvBook csvBook)
     {
         var title = CsvConverter.ConvertToTitle(csvBook.Title);
-        var authors = CsvConverter.CreateAuthor(csvBook.Creator);
+        var authors = CsvConverter.ConvertToAuthor(csvBook.Creator);
         var identifier = CsvConverter.ConvertIdentifier(csvBook.Identifier);
         var formats = CsvConverter.ConvertToListOfFormats(csvBook.Formats);
-        if (string.IsNullOrEmpty(title) || authors == null || string.IsNullOrEmpty(identifier))
+        if (string.IsNullOrEmpty(title) || authors == null || string.IsNullOrEmpty(identifier) || formats.Count == 0)
         {
             return null;
         }

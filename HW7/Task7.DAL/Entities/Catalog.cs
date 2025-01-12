@@ -72,10 +72,8 @@ public class Catalog
     /// <returns>The book with the specified ISBN, or null if no book is found.</returns>
     public Book? GetBookByIsbn(string isbn)
     {
-        var convertedIsbn = IsbnConverter.ConvertIsbnToSimplifiedPattern(isbn);
-
         var book = _books
-            .Where(b => b.Key.ToString() == convertedIsbn)
+            .Where(b => b.Key.ToString() == isbn)
             .Select(b => b.Value)
             .FirstOrDefault();
 

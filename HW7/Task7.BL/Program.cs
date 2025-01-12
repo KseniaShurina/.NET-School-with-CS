@@ -1,8 +1,9 @@
 ﻿using Task7.BL.Factories;
 using Task7.DAL.Entities;
 using Task7.DAL.Interfaces;
-using Task7.DAL.Repositories;
+using Task7.DAL.Providers;
 
+#region MyRegion
 // Create authors
 var author1 = new Author("George", "Orwell", new DateTime(1903, 6, 25));
 var author2 = new Author("Yuval Noah", "Harari", new DateTime(1976, 2, 24));
@@ -86,8 +87,11 @@ var eBook4 = new EBook(
     new List<string> { "PDF", "EPUB", "MOBI" }
 );
 
+
+#endregion
+
 var builder = LibraryBuilder.GetInstance();
-var paperLibrary = builder.BuildLibrary("Paper", new List<Book>(){ paperBook1, paperBook2, paperBook3, paperBook4, paperBook5, paperBook6 });
+var paperLibrary = builder.BuildLibrary("Paper", new List<Book>() { paperBook1, paperBook2, paperBook3, paperBook4, paperBook5, paperBook6 });
 
 // GetBookTitles
 Console.WriteLine("GetAsync Book Titles:");
@@ -128,25 +132,28 @@ IDataProvider xmlDataProvider = new XmlDataProvider();
 IDataProvider jsonDataProvider = new JsonDataProvider();
 IDataProvider scvDataProvider = new ScvDataProvider();
 
-//XML
-await xmlDataProvider.SaveBooks(paperLibrary.Catalog.GetAllBooks());
-Console.WriteLine();
-Console.WriteLine("Books from XML:");
-foreach (var book in await xmlDataProvider.GetBooks())
-{
-    Console.WriteLine(book);
-}
+////XML
+//await xmlDataProvider.SaveBooks(paperLibrary.Catalog.GetAllBooks());
+//Console.WriteLine();
+//Console.WriteLine("Books from XML:");
+//foreach (var book in await xmlDataProvider.GetBooks())
+//{
+//    Console.WriteLine(book);
+//}
 
-//JSON
-await jsonDataProvider.SaveBooks(paperLibrary.Catalog.GetAllBooks());
-Console.WriteLine();
-Console.WriteLine("Books from JSON:");
-foreach (var book in await jsonDataProvider.GetBooks())
-{
-    Console.WriteLine(book);
-}
+////JSON
+//await jsonDataProvider.SaveBooks(paperLibrary.Catalog.GetAllBooks());
+//Console.WriteLine();
+//Console.WriteLine("Books from JSON:");
+//foreach (var book in await jsonDataProvider.GetBooks())
+//{
+//    Console.WriteLine(book);
+//}
+
 
 //SCV
+Console.WriteLine();
+Console.WriteLine("Books from SCV:");
 var books = await scvDataProvider.GetBooks();
 foreach (var book in books)
 {
