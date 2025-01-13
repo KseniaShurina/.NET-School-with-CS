@@ -1,6 +1,5 @@
 ﻿using Task7.BL.Interfaces;
 using Task7.DAL.Entities;
-using Task7.DAL.Providers;
 
 namespace Task7.BL.Factories;
 
@@ -20,10 +19,19 @@ public class LibraryBuilder
         };
     }
 
-    public Library BuildLibrary(string type, IEnumerable<Book> books)
+    public Library BuildLibrary(string type, List<Book> books)
     {
-        ScvDataProvider _provider = new ScvDataProvider();
-        var books1 = _provider.GetBooks();
+        if (books == null)
+        {
+            throw new ArgumentNullException(nameof(books));
+        }
+
+        var expectedType = type == "Paper" ? typeof(PaperBook) : typeof(EBook);
+        if (books.Any(book => book.GetType() != expectedType))
+        {
+            throw new ArgumentException($"Invalid type of book in {nameof(books)}");
+        }
+        
         _factories.TryGetValue(type, out ILibraryAbstractFactory? factory);
         var catalog = _factories[type].CreateCatalog(books);
         var pressReleaseItems = _factories[type].CreatePressReleaseItems(books);

@@ -17,6 +17,5 @@ public class EBook : Book
         }
     }
 
-    //public override string ToString() => $"Title: {Title}, Identifier: {Identifier}";
-    public override string ToString() => $"Title: {Title}";
+    public override string ToString() => $"Title: {Title}, Identifier: {Identifier}";
 }

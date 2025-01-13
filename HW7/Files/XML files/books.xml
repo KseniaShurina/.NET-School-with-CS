@@ -1,90 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfDtoBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DtoBook>
-    <Title>1984</Title>
+    <Title>B for Buster</Title>
     <Identifiers>
-      <string>9780451524935</string>
-      <string>9780451526342</string>
-      <string>9780141036144</string>
+      <string>0385730861</string>
+      <string>2003017345</string>
+      <string>53170159</string>
+      <string>0440238102</string>
+      <string>2006567343</string>
+      <string>225767106</string>
+      <string>62894123</string>
+      <string>676701125</string>
+      <string>0307433153</string>
+      <string>773919329</string>
+      <string>869488550</string>
+      <string>1299143091</string>
+      <string>842964710</string>
     </Identifiers>
     <Authors>
       <DtoAuthor>
-        <FirstName>George</FirstName>
-        <LastName>Orwell</LastName>
-        <DateOfBirthday>1903-06-25T00:00:00</DateOfBirthday>
+        <FirstName>Iain</FirstName>
+        <LastName>Lawrence</LastName>
+        <DateOfBirthday xsi:nil="true" />
       </DtoAuthor>
     </Authors>
   </DtoBook>
   <DtoBook>
-    <Title>Sapiens: A Brief History of Humankind</Title>
+    <Title>The house of Dies Drear</Title>
     <Identifiers>
-      <string>9780062316097</string>
-      <string>9780062316110</string>
-      <string>9780099590088</string>
+      <string>1453213767</string>
+      <string>703424633</string>
+      <string>830111680</string>
+      <string>857313052</string>
+      <string>864443161</string>
+      <string>158118087</string>
+      <string>47967411</string>
+      <string>0606033149</string>
+      <string>84019847</string>
+      <string>811620013</string>
+      <string>0153052228</string>
+      <string>33271072</string>
+      <string>1417743441</string>
+      <string>465226463</string>
+      <string>0808551191</string>
+      <string>769265356</string>
+      <string>1563123193</string>
+      <string>228015735</string>
+      <string>0736231900</string>
+      <string>2008298428</string>
+      <string>159959061</string>
+      <string>667597212</string>
+      <string>0329037277</string>
+      <string>732747079</string>
+      <string>0590135724</string>
+      <string>41510630</string>
+      <string>779004888</string>
+      <string>798927138</string>
+      <string>0020435207</string>
+      <string>317354412</string>
+      <string>317856399</string>
+      <string>43520580</string>
+      <string>50429851</string>
+      <string>6276426</string>
+      <string>64385753</string>
+      <string>671643026</string>
+      <string>70284073</string>
+      <string>824177484</string>
+      <string>865358419</string>
+      <string>40058974</string>
+      <string>1306597765</string>
+      <string>877030710</string>
+      <string>0440936799</string>
+      <string>5809335</string>
+      <string>704045486</string>
+      <string>039561824</string>
+      <string>31991239</string>
+      <string>0673817903</string>
+      <string>35240465</string>
+      <string>0663585538</string>
+      <string>33152714</string>
+      <string>044084696</string>
+      <string>30116366</string>
+      <string>500687724</string>
+      <string>1416914056</string>
+      <string>2006272081</string>
+      <string>636521912</string>
+      <string>1557361738</string>
+      <string>89078529</string>
+      <string>20933011</string>
+      <string>520882978</string>
+      <string>671297759</string>
     </Identifiers>
     <Authors>
       <DtoAuthor>
-        <FirstName>Yuval Noah</FirstName>
-        <LastName>Harari</LastName>
-        <DateOfBirthday>1976-02-24T00:00:00</DateOfBirthday>
+        <FirstName>Virginia</FirstName>
+        <LastName>Hamilton</LastName>
+        <DateOfBirthday xsi:nil="true" />
+      </DtoAuthor>
+      <DtoAuthor>
+        <FirstName>Eros</FirstName>
+        <LastName>Keith</LastName>
+        <DateOfBirthday xsi:nil="true" />
       </DtoAuthor>
     </Authors>
   </DtoBook>
   <DtoBook>
-    <Title>Pride and Prejudice</Title>
+    <Title>Blood dazzler: poems</Title>
     <Identifiers>
-      <string>9780141439518</string>
-      <string>9780199535569</string>
-      <string>9780141199078</string>
+      <string>1566893658</string>
+      <string>863824742</string>
+      <string>868961651</string>
+      <string>1306444799</string>
     </Identifiers>
     <Authors>
       <DtoAuthor>
-        <FirstName>Jane</FirstName>
-        <LastName>Austen</LastName>
-        <DateOfBirthday>1775-12-16T00:00:00</DateOfBirthday>
+        <FirstName>Patricia</FirstName>
+        <LastName>Smith</LastName>
+        <DateOfBirthday xsi:nil="true" />
       </DtoAuthor>
     </Authors>
   </DtoBook>
   <DtoBook>
-    <Title>Harry Potter and the Philosopher's Stone</Title>
+    <Title>Arrow of God</Title>
     <Identifiers>
-      <string>9780747532743</string>
-      <string>9780439554930</string>
-      <string>9781408855898</string>
+      <string>0141930683</string>
+      <string>665842561</string>
+      <string>0434006009</string>
+      <string>3581950</string>
+      <string>650089220</string>
+      <string>806305883</string>
+      <string>9966467920</string>
+      <string>36142091</string>
+      <string>831422540</string>
+      <string>4359053096</string>
+      <string>262707729</string>
+      <string>772505674</string>
+      <string>0385667809</string>
+      <string>618512518</string>
+      <string>9552015979</string>
+      <string>222587125</string>
+      <string>224244788</string>
+      <string>0435905317</string>
+      <string>13904845</string>
+      <string>0385668333</string>
+      <string>869812308</string>
+      <string>0435900161</string>
+      <string>66036356</string>
+      <string>245799536</string>
+      <string>246901254</string>
+      <string>248086337</string>
+      <string>248524588</string>
+      <string>254937476</string>
+      <string>256047034</string>
+      <string>3286077</string>
+      <string>463182094</string>
+      <string>466319908</string>
+      <string>474087105</string>
+      <string>475315667</string>
+      <string>489979525</string>
+      <string>490269142</string>
+      <string>491164902</string>
+      <string>493264079</string>
+      <string>5585993</string>
+      <string>610644438</string>
+      <string>611956861</string>
+      <string>638533652</string>
+      <string>718593239</string>
+      <string>742478413</string>
+      <string>749423113</string>
+      <string>797548907</string>
+      <string>801961971</string>
+      <string>803389975</string>
+      <string>810648637</string>
+      <string>813689894</string>
+      <string>870077204</string>
+      <string>879236892</string>
+      <string>0141191562</string>
+      <string>618984229</string>
+      <string>699685434</string>
+      <string>758344113</string>
+      <string>836940504</string>
+      <string>861326234</string>
+      <string>0435905309</string>
+      <string>255240401</string>
+      <string>257884875</string>
+      <string>258078348</string>
+      <string>419888509</string>
+      <string>441453725</string>
+      <string>490043424</string>
+      <string>493442764</string>
+      <string>495544917</string>
+      <string>615210369</string>
+      <string>636180003</string>
+      <string>742263749</string>
+      <string>779119252</string>
+      <string>805625416</string>
+      <string>809850358</string>
+      <string>827089098</string>
+      <string>836795642</string>
+      <string>85947904</string>
+      <string>868374853</string>
+      <string>874750542</string>
+      <string>877729530</string>
     </Identifiers>
     <Authors>
       <DtoAuthor>
-        <FirstName>J.K.</FirstName>
-        <LastName>Rowling</LastName>
-        <DateOfBirthday>1965-07-31T00:00:00</DateOfBirthday>
+        <FirstName>Chinua</FirstName>
+        <LastName>Achebe</LastName>
+        <DateOfBirthday xsi:nil="true" />
       </DtoAuthor>
     </Authors>
   </DtoBook>
   <DtoBook>
-    <Title>Homo Deus: A Brief History of Tomorrow</Title>
+    <Title>1776</Title>
     <Identifiers>
-      <string>9780062464316</string>
-      <string>9780099590088</string>
+      <string>0786276231</string>
+      <string>2005004869</string>
+      <string>427390789</string>
+      <string>57754080</string>
+      <string>731252920</string>
+      <string>824609000</string>
+      <string>0141021713</string>
+      <string>255792349</string>
+      <string>494198291</string>
+      <string>633535630</string>
+      <string>63702588</string>
+      <string>851801629</string>
+      <string>852793196</string>
+      <string>0713998636</string>
+      <string>238592747</string>
+      <string>470266854</string>
+      <string>474830262</string>
+      <string>60848525</string>
+      <string>642939773</string>
+      <string>799161844</string>
+      <string>803816159</string>
+      <string>1594131430</string>
+      <string>228467545</string>
+      <string>71316276</string>
+      <string>733772090</string>
+      <string>812161429</string>
+      <string>0743226712</string>
+      <string>2005042505</string>
+      <string>439375098</string>
+      <string>474685552</string>
+      <string>494161735</string>
+      <string>57557578</string>
+      <string>61115334</string>
+      <string>657066308</string>
+      <string>728084753</string>
+      <string>751159827</string>
+      <string>760638795</string>
+      <string>801763576</string>
+      <string>873642885</string>
+      <string>0739461907</string>
+      <string>664469827</string>
+      <string>0743287703</string>
+      <string>874959616</string>
+      <string>2895653895</string>
+      <string>671270272</string>
+      <string>75087697</string>
     </Identifiers>
     <Authors>
       <DtoAuthor>
-        <FirstName>Yuval Noah</FirstName>
-        <LastName>Harari</LastName>
-        <DateOfBirthday>1976-02-24T00:00:00</DateOfBirthday>
-      </DtoAuthor>
-    </Authors>
-  </DtoBook>
-  <DtoBook>
-    <Title>21 Lessons for the 21st Century</Title>
-    <Identifiers>
-      <string>9780525512172</string>
-      <string>9781787330672</string>
-    </Identifiers>
-    <Authors>
-      <DtoAuthor>
-        <FirstName>Yuval Noah</FirstName>
-        <LastName>Harari</LastName>
-        <DateOfBirthday>1976-02-24T00:00:00</DateOfBirthday>
+        <FirstName>David G</FirstName>
+        <LastName>McCullough</LastName>
+        <DateOfBirthday xsi:nil="true" />
       </DtoAuthor>
     </Authors>
   </DtoBook>

@@ -14,6 +14,5 @@ public class PaperBook : Book
         Publisher = publisher;
     }
 
-    //public override string ToString() => $"Title: {Title}, Publication date: {PublicationDate}, Publisher: {Publisher}";
-    public override string ToString() => $"Title: {Title}";
+    public override string ToString() => $"Title: {Title}, Publication date: {PublicationDate}, Publisher: {Publisher}";
 }

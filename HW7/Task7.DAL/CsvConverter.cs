@@ -12,9 +12,7 @@ internal static class CsvConverter
     private const string RegexPattern = @"^[A-Za-z0-9=\- ()':]+(\?[ ]*)?$";
 
     private const string NotAllowed = "(?i).*isbn.*";
-    //private const string RegexPattern = @"^[A-Za-z0-9=\- ()']+(\?[ ]*)?$";
 
-    //TODO: Bad approach. Allocates memory each time when line is modified.
     public static string? ConvertToTitle(string line)
     {
         if (string.IsNullOrEmpty(line))
@@ -40,6 +38,7 @@ internal static class CsvConverter
         {
             using (StreamWriter writer = new StreamWriter(Path, true))
             {
+                writer.WriteLine(DateTime.UtcNow);
                 writer.WriteLine(line);
             }
             return null;
@@ -80,7 +79,7 @@ internal static class CsvConverter
                 {
                     lastName = authorList[i].Trim();
                 }
-                if (firstName != null && lastName != null && !Regex.IsMatch(firstName, RegexPattern) && !Regex.IsMatch(lastName, RegexPattern))
+                if (firstName != null && lastName != null && Regex.IsMatch(firstName, RegexPattern) && Regex.IsMatch(lastName, RegexPattern))
                 {
                     authors.Add(new Author(firstName, lastName, null));
                     firstName = null;

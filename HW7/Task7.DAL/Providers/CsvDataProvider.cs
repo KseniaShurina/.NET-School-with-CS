@@ -3,14 +3,13 @@ using CsvHelper;
 using Task7.DAL.DTO;
 using Task7.DAL.Entities;
 using Task7.DAL.Interfaces;
-using Task7.DAL.Repositories;
 using Task7.DAL.Validators;
 
 namespace Task7.DAL.Providers;
 
-public class ScvDataProvider : IDataProvider
+public class CsvDataProvider : IDataProvider
 {
-    public ScvDataProvider() { }
+    public CsvDataProvider() { }
 
     private const string PathToFile =
         @"D:\Xeni\Repositories\Coherent-solutions-.NET-School\HW7\Files\books_info.csv";
@@ -46,8 +45,6 @@ public class ScvDataProvider : IDataProvider
         throw new NotImplementedException();
     }
 
-
-
     public PaperBook? CreatePaperBook(CsvBook csvBook)
     {
         var title = CsvConverter.ConvertToTitle(csvBook.Title);
@@ -57,12 +54,11 @@ public class ScvDataProvider : IDataProvider
         //TODO: Could be many publishers
         var publisher = CsvConverter.ConvertToListOfPublishers(csvBook.Publisher)[0] ?? null;
 
-        // Only for electronic books?
-        //var identifier = CsvConverter.ConvertIdentifier(csvBook.Identifier);
         if (string.IsNullOrEmpty(title) || authors == null || isbns == null || publisher == null)
         {
             return null;
         }
+
         return new PaperBook(title, authors, isbns, publicationDate, publisher);
     }
 

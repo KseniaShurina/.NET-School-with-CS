@@ -5,7 +5,8 @@ namespace Task7.DAL.Validators;
 
 public class EntityValidator
 {
-    private const string RegexPattern = @"\d{3}-?\d{1}-?\d{2}-?\d{6}-?\d{1}";
+    private const string RegexPatternIsbn13 = @"\d{3}-?\d{1}-?\d{2}-?\d{6}-?\d{1}";
+    private const string RegexPatternIsbn10 = @"^\d{1,5}-?\d{1,7}-?\d{1,7}-?[\dX]$";
     private const byte SizeOfName = 200;
 
     public static bool AcceptBook(Book? book)
@@ -43,7 +44,11 @@ public class EntityValidator
 
     public static bool IsIsbn(string identifier)
     {
-        return Regex.IsMatch(identifier, RegexPattern);
+        if (Regex.IsMatch(identifier, RegexPatternIsbn13) || Regex.IsMatch(identifier, RegexPatternIsbn10))
+        {
+            return true;
+        }
+        return false;
     }
 
     public static bool AcceptIsbn(string? isbn)
@@ -51,7 +56,7 @@ public class EntityValidator
         if (isbn == null) return false;
         if (IsPropNullOrEmpty(isbn)) return false;
 
-        if (!Regex.IsMatch(isbn, RegexPattern))
+        if (!Regex.IsMatch(isbn, RegexPatternIsbn13) && !Regex.IsMatch(isbn, RegexPatternIsbn10))
         {
             return false;
         }
