@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="PuppeteerSharp" Version="20.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <ProjectReference Include="..\Task8.DAL\Task8.DAL.csproj" />
   </ItemGroup>
 

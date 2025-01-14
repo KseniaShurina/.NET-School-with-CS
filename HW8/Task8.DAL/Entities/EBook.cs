@@ -9,6 +9,8 @@ public class EBook : Book
     // A list of available electronic formats.
     public List<string>? Formats { get; private set; }
 
+    public int? Pages { get; set; }
+
     public EBook(string title, IEnumerable<Author> authors, string identifier, IEnumerable<string>? formats = null) :
         base(title, authors)
     {

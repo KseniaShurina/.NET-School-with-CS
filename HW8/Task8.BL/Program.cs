@@ -1,4 +1,5 @@
 ﻿using Task8.BL.Factories;
+using Task8.BL.Services;
 using Task8.DAL.Entities;
 using Task8.DAL.Interfaces;
 using Task8.DAL.Providers;
@@ -74,3 +75,9 @@ foreach (var author in paperLibrary.Catalog.GetNumberOfBooksByAuthor())
 {
     Console.WriteLine(author);
 }
+
+//EBookService to get out number of pages
+Console.WriteLine();
+Console.WriteLine("Amount of pages of each EBook:");
+var ebookService = new EBookService();
+await ebookService.InitializePagesForEBooksAsync(eLibrary);
